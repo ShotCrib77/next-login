@@ -14,9 +14,13 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ message: "User Created!" }, {status: 201});
     } catch (error: any) {
         console.error("Registration error: ", error);
-
+        
         if (error.code === "ER_DUP_ENTRY") {
-            return NextResponse.json({ error: "Username or Email already exist" }, {status: 409});
+            if (error.message.includes("username")) {
+                return NextResponse.json({ error: "Username already exist" }, {status: 409});
+            } else if (error.message.includes("email")) {
+                return NextResponse.json({ error: "Email already exist" }, {status: 409});
+            }
         }
         
         return NextResponse.json({ error: "Server error" }, { status: 500 })
