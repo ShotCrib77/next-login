@@ -1,3 +1,7 @@
+THIS REPO HAS TWO VERSIONS
+Current main branch uses JWT tokens for fast auth
+Previous comit uses a custom Sessions DB for handling tokens which would be slower at scale but allows for instant session removal
+
 Need these enviroment variables:
 DATABASE_HOST=localhost
 DATABASE_USER=root
